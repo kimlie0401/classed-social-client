@@ -12,6 +12,7 @@ import CardContent from "@material-ui/core/CardContent";
 import Typography from "@material-ui/core/Typography";
 import Avatar from "@material-ui/core/Avatar";
 import { CardHeader } from "@material-ui/core";
+import Divider from "@material-ui/core/Divider";
 
 const styles = {
   card: {
@@ -63,6 +64,7 @@ class Scream extends Component {
           }
           subheader={dayjs(createdAt).fromNow()}
         />
+        <Divider variant="middle" />
         <CardContent className={classes.content}>
           <Typography variant="body1">{body}</Typography>
         </CardContent>
