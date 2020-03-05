@@ -44,6 +44,23 @@ class login extends Component {
     this.setState({
       loading: true
     });
+    const userData = {
+      email: this.state.email,
+      password: this.state.password
+    };
+    axios
+      .post("/login", userData)
+      .then(res => {
+        console.log(res.data);
+        this.setState({ loading: false });
+        this.props.history.push("/");
+      })
+      .catch(err => {
+        this.setState({
+          errors: err.response.data,
+          loading: false
+        });
+      });
   };
 
   handleChange = event => {
@@ -54,11 +71,12 @@ class login extends Component {
 
   render() {
     const { classes } = this.props;
+    const { errors, loading } = this.state;
     return (
       <Grid container className={classes.form}>
         <Grid item sm xs={12} />
         <Grid item sm xs={12}>
-          <img src={AppIcon} art="logo" className={classes.image} />
+          <img src={AppIcon} alt="logo" className={classes.image} />
           <Typography
             variant="h4"
             color="primary"
@@ -73,6 +91,8 @@ class login extends Component {
               type="email"
               label="Email"
               className={classes.textField}
+              helperText={errors.email}
+              error={errors.email ? true : false}
               value={this.state.email}
               onChange={this.handleChange}
               fullWidth
@@ -83,6 +103,8 @@ class login extends Component {
               type="password"
               label="Password"
               className={classes.textField}
+              helperText={errors.password}
+              error={errors.password ? true : false}
               value={this.state.password}
               onChange={this.handleChange}
               fullWidth
