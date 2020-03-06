@@ -50,8 +50,10 @@ class signup extends Component {
       .post("/signup", newUserData)
       .then(res => {
         // console.log(res.data);
-
-        Cookies.set("FBIdToken", `Bearer ${res.data.token}`);
+        let expireTime = 1 / 24; // 1 hour
+        Cookies.set("FBIdToken", `Bearer ${res.data.token}`, {
+          expires: expireTime
+        });
         this.setState({ loading: false });
         this.props.history.push("/");
       })
