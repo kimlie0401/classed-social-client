@@ -18,19 +18,27 @@ import signup from "./pages/signup";
 
 const theme = createMuiTheme(themeFile);
 
-let authenticated;
-const token = Cookies.getJSON("FBIdToken");
-if (token) {
-  const decodedToken = jwtDecode(token);
-  if (decodedToken * 1000 < Date.now()) {
-    window.location.href = "/login";
-    authenticated = false;
-  } else {
-    authenticated = true;
-  }
-}
-
 class App extends Component {
+  state = {
+    authenticated: null
+  };
+  componentDidMount = () => {
+    const token = Cookies.getJSON("FBIdToken");
+    if (token) {
+      const decodedToken = jwtDecode(token);
+      if (decodedToken * 1000 < Date.now()) {
+        window.location.href = "/login";
+        this.setState({
+          authenticated: false
+        });
+      } else {
+        this.setState({
+          authenticated: true
+        });
+      }
+    }
+  };
+
   render() {
     return (
       <MuiThemeProvider theme={theme}>
@@ -44,13 +52,13 @@ class App extends Component {
                   exact
                   path="/login"
                   component={login}
-                  authenticated={authenticated}
+                  authenticated={this.state.authenticated}
                 />
                 <AuthRoute
                   exact
                   path="/signup"
                   component={signup}
-                  authenticated={authenticated}
+                  authenticated={this.state.authenticated}
                 />
               </Switch>
             </div>
