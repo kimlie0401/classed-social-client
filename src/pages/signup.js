@@ -15,6 +15,9 @@ import Button from "@material-ui/core/Button";
 import CircularProgress from "@material-ui/core/CircularProgress";
 import Card from "@material-ui/core/Card";
 
+axios.defaults.baseURL =
+  "https://us-central1-social-573b5.cloudfunctions.net/api";
+
 const styles = theme => ({
   ...theme.global
 });
