@@ -3,6 +3,7 @@ import withStyles from "@material-ui/core/styles/withStyles";
 import PropTypes from "prop-types";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import Cookies from "js-cookie";
 
 import AppIcon from "../images/logo192.png";
 
@@ -14,35 +15,9 @@ import Button from "@material-ui/core/Button";
 import CircularProgress from "@material-ui/core/CircularProgress";
 import Card from "@material-ui/core/Card";
 
-const styles = {
-  form: {
-    textAlign: "center"
-  },
-  image: {
-    margin: "5px auto 5px auto",
-    width: 100,
-    height: 100
-  },
-  textField: {
-    margin: "10px auto 10px auto"
-  },
-  button: {
-    marginTop: 20,
-    position: "relative",
-    marginBottom: 20
-  },
-  customError: {
-    color: "red",
-    fontSize: "0.8rem",
-    marginTop: 10
-  },
-  progress: {
-    position: "absolute"
-  },
-  card: {
-    padding: 20
-  }
-};
+const styles = theme => ({
+  ...theme.global
+});
 
 class login extends Component {
   constructor() {
@@ -67,7 +42,11 @@ class login extends Component {
     axios
       .post("/login", userData)
       .then(res => {
-        console.log(res.data);
+        // console.log(res.data);
+        let expireTime = 1 / 24; // 1 hour
+        Cookies.set("FBIdToken", `Bearer ${res.data.token}`, {
+          expires: expireTime
+        });
         this.setState({ loading: false });
         this.props.history.push("/");
       })

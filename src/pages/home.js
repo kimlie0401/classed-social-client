@@ -5,6 +5,8 @@ import axios from "axios";
 import Scream from "../components/Scream";
 import Loader from "../components/Loader";
 
+import Grow from "@material-ui/core/Zoom";
+
 class home extends Component {
   state = {
     screams: null
@@ -36,9 +38,11 @@ class home extends Component {
     );
     return (
       <Grid container spacing={2}>
-        <Grid item sm={8} xs={12}>
-          {recentScreamMarkup}
-        </Grid>
+        <Grow in={this.state.screams ? true : false}>
+          <Grid item sm={8} xs={12}>
+            {recentScreamMarkup}
+          </Grid>
+        </Grow>
         <Grid item sm={4} xs={12}>
           <p>Profile...</p>
         </Grid>
