@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Component } from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import "./App.css";
 import { ThemeProvider as MuiThemeProvider } from "@material-ui/core/styles";
@@ -30,33 +30,35 @@ if (token) {
   }
 }
 
-function App() {
-  return (
-    <MuiThemeProvider theme={theme}>
-      <div className="App">
-        <Router>
-          <Navbar />
-          <div className="container">
-            <Switch>
-              <Route exact path="/" component={home} />
-              <AuthRoute
-                exact
-                path="/login"
-                component={login}
-                authenticated={authenticated}
-              />
-              <AuthRoute
-                exact
-                path="/signup"
-                component={signup}
-                authenticated={authenticated}
-              />
-            </Switch>
-          </div>
-        </Router>
-      </div>
-    </MuiThemeProvider>
-  );
+class App extends Component {
+  render() {
+    return (
+      <MuiThemeProvider theme={theme}>
+        <div className="App">
+          <Router>
+            <Navbar />
+            <div className="container">
+              <Switch>
+                <Route exact path="/" component={home} />
+                <AuthRoute
+                  exact
+                  path="/login"
+                  component={login}
+                  authenticated={authenticated}
+                />
+                <AuthRoute
+                  exact
+                  path="/signup"
+                  component={signup}
+                  authenticated={authenticated}
+                />
+              </Switch>
+            </div>
+          </Router>
+        </div>
+      </MuiThemeProvider>
+    );
+  }
 }
 
 export default App;
