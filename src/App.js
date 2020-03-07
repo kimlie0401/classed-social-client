@@ -40,26 +40,6 @@ if (token) {
 }
 
 class App extends Component {
-  // state = {
-  //   authenticated: null
-  // };
-  // componentDidMount = () => {
-  //   const token = Cookies.getJSON("FBIdToken");
-  //   if (token) {
-  //     const decodedToken = jwtDecode(token);
-  //     if (decodedToken * 1000 < Date.now()) {
-  //       window.location.href = "/login";
-  //       this.setState({
-  //         authenticated: false
-  //       });
-  //     } else {
-  //       this.setState({
-  //         authenticated: true
-  //       });
-  //     }
-  //   }
-  // };
-
   render() {
     return (
       <MuiThemeProvider theme={theme}>
