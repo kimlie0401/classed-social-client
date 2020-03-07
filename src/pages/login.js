@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import withStyles from "@material-ui/core/styles/withStyles";
 import PropTypes from "prop-types";
-import axios from "axios";
 import { Link } from "react-router-dom";
 
 import AppIcon from "../images/logo192.png";
@@ -17,9 +16,6 @@ import Card from "@material-ui/core/Card";
 // Redux stuff
 import { connect } from "react-redux";
 import { loginUser } from "../redux/actions/userActions";
-
-axios.defaults.baseURL =
-  "https://us-central1-social-573b5.cloudfunctions.net/api";
 
 const styles = theme => ({
   ...theme.global
@@ -59,10 +55,10 @@ class login extends Component {
   render() {
     const {
       classes,
-      UI: { loaing }
+      UI: { loading }
     } = this.props;
-    const { errors, loading } = this.state;
-    // console.log(this.props);
+    const { errors } = this.state;
+    console.log(this.props);
     return (
       <Grid container className={classes.form}>
         <Grid item sm xs={12} />
