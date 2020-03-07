@@ -4,6 +4,7 @@ import axios from "axios";
 
 import Scream from "../components/Scream";
 import Loader from "../components/Loader";
+import Profile from "../components/Profile";
 
 import Grow from "@material-ui/core/Zoom";
 
@@ -47,7 +48,7 @@ class home extends Component {
           </Grid>
         </Grow>
         <Grid item sm={4} xs={12}>
-          <p>Profile...</p>
+          <Profile />
         </Grid>
       </Grid>
     );

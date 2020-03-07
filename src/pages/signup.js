@@ -144,7 +144,12 @@ class signup extends Component {
                 )}
               </Button>
               <small>
-                Already have an account? <Link to="/login">Login</Link>
+                Already have an account?{" "}
+                <Link to="/login">
+                  <Typography variant="body" color="primary">
+                    Login
+                  </Typography>
+                </Link>
               </small>
             </form>
           </Card>

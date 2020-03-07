@@ -116,7 +116,12 @@ class login extends Component {
                 )}
               </Button>
               <small>
-                New to us? <Link to="/signup">Sign Up</Link>
+                New to us?{" "}
+                <Link to="/signup">
+                  <Typography variant="body" color="primary">
+                    Sign Up
+                  </Typography>
+                </Link>
               </small>
             </form>
           </Card>
