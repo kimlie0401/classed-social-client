@@ -17,12 +17,13 @@ export const loginUser = (userData, history) => dispatch => {
     .post("/login", userData)
     .then(res => {
       // console.log(res.data);
-      const FBIdToken = `Bearer ${res.data.token}`;
-      let expireTime = 1 / 24; // 1 hour
-      Cookies.set("FBIdToken", FBIdToken, {
-        expires: expireTime
-      });
-      axios.defaults.headers.common["Authorization"] = FBIdToken;
+      //   const FBIdToken = `Bearer ${res.data.token}`;
+      //   let expireTime = 1 / 24; // 1 hour
+      //   Cookies.set("FBIdToken", FBIdToken, {
+      //     expires: expireTime
+      //   });
+      //   axios.defaults.headers.common["Authorization"] = FBIdToken;
+      setAuthorizationHeader(res.data.token);
       dispatch(getUserData());
       dispatch({ type: CLEAR_ERRORS });
       history.push("/");
