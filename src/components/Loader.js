@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import CircularProgress from "@material-ui/core/CircularProgress";
 
 const Container = styled.div`
   height: 70vh;
@@ -13,7 +14,8 @@ const Container = styled.div`
 
 export default () => (
   <Container>
-    <span role="img" aria-label="Loading">
+    <CircularProgress />
+    {/* <span role="img" aria-label="Loading">
       <svg
         version="1.1"
         id="loader-1"
@@ -52,6 +54,6 @@ export default () => (
           />
         </path>
       </svg>
-    </span>
+    </span> */}
   </Container>
 );

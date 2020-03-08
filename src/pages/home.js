@@ -41,7 +41,7 @@ class home extends Component {
       <Loader />
     );
     return (
-      <Grid container spacing={2}>
+      <Grid container spacing={3}>
         <Grow in={this.state.screams ? true : false}>
           <Grid item sm={8} xs={12}>
             {recentScreamMarkup}
