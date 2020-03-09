@@ -18,6 +18,7 @@ import DialogContent from "@material-ui/core/DialogContent";
 import DialogContentText from "@material-ui/core/DialogContentText";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import Slide from "@material-ui/core/Slide";
+import EditDetails from "./EditDetails";
 
 // Icons
 import LocationOn from "@material-ui/icons/LocationOn";
@@ -97,6 +98,9 @@ class Profile extends Component {
   };
   handleLogout = () => {
     this.props.logoutUser();
+    this.setState({
+      open: false
+    });
   };
 
   render() {
@@ -169,6 +173,7 @@ class Profile extends Component {
               <KeyboardReturn color="primary" />
             </IconButton>
           </Tooltip>
+          <EditDetails />
           <Dialog
             open={this.state.open}
             onClose={() => {
