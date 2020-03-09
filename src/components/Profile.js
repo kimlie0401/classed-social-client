@@ -12,28 +12,18 @@ import MuiLink from "@material-ui/core/Link";
 import Paper from "@material-ui/core/Paper";
 import IconButton from "@material-ui/core/IconButton";
 import Tooltip from "@material-ui/core/Tooltip";
-import Dialog from "@material-ui/core/Dialog";
-import DialogActions from "@material-ui/core/DialogActions";
-import DialogContent from "@material-ui/core/DialogContent";
-import DialogContentText from "@material-ui/core/DialogContentText";
-import DialogTitle from "@material-ui/core/DialogTitle";
-import Slide from "@material-ui/core/Slide";
 import EditDetails from "./EditDetails";
+import Logout from "./Logout";
 
 // Icons
 import LocationOn from "@material-ui/icons/LocationOn";
 import LinkIcon from "@material-ui/icons/Link";
 import CalendarToday from "@material-ui/icons/CalendarToday";
 import EditIcon from "@material-ui/icons/Edit";
-import KeyboardReturn from "@material-ui/icons/KeyboardReturn";
 
 //Redux
 import { connect } from "react-redux";
-import { logoutUser, uploadImage } from "../redux/actions/userActions";
-
-const Transition = React.forwardRef(function Transition(props, ref) {
-  return <Slide direction="up" ref={ref} {...props} />;
-});
+import { uploadImage } from "../redux/actions/userActions";
 
 const styles = theme => ({
   paper: {
@@ -164,43 +154,8 @@ class Profile extends Component {
               <span>Joined {dayjs(createdAt).format("MMM YYYY")}</span>
             </div>
           </div>
-          <Tooltip title="Logout" placement="top">
-            <IconButton
-              onClick={() => {
-                this.setState({ open: true });
-              }}
-            >
-              <KeyboardReturn color="primary" />
-            </IconButton>
-          </Tooltip>
+          <Logout />
           <EditDetails />
-          <Dialog
-            open={this.state.open}
-            onClose={() => {
-              this.setState({ open: false });
-            }}
-            fullWidth={true}
-            maxWidth="sm"
-            TransitionComponent={Transition}
-          >
-            <DialogTitle>{"Logout"}</DialogTitle>
-            <DialogContent>
-              <DialogContentText>Are you sure to logout?</DialogContentText>
-            </DialogContent>
-            <DialogActions>
-              <Button
-                onClick={() => {
-                  this.setState({ open: false });
-                }}
-                color="primary"
-              >
-                Cancel
-              </Button>
-              <Button onClick={this.handleLogout} color="primary" autoFocus>
-                OK
-              </Button>
-            </DialogActions>
-          </Dialog>
         </Paper>
       ) : (
         <Paper className={classes.paper}>
@@ -239,10 +194,9 @@ const mapStateToProps = state => ({
   user: state.user
 });
 
-const mapActionsToProps = { logoutUser, uploadImage };
+const mapActionsToProps = { uploadImage };
 
 Profile.propTypes = {
-  logoutUser: PropTypes.func.isRequired,
   uploadImage: PropTypes.func.isRequired,
   user: PropTypes.object.isRequired,
   classes: PropTypes.object.isRequired
