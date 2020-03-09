@@ -4,6 +4,8 @@ import withStyles from "@material-ui/core/styles/withStyles";
 import { Link } from "react-router-dom";
 import dayjs from "dayjs";
 import Loader from "./Loader";
+import EditDetails from "./EditDetails";
+import Logout from "./Logout";
 
 // MUI stuff
 import Button from "@material-ui/core/Button";
@@ -12,8 +14,7 @@ import MuiLink from "@material-ui/core/Link";
 import Paper from "@material-ui/core/Paper";
 import IconButton from "@material-ui/core/IconButton";
 import Tooltip from "@material-ui/core/Tooltip";
-import EditDetails from "./EditDetails";
-import Logout from "./Logout";
+import Divider from "@material-ui/core/Divider";
 
 // Icons
 import LocationOn from "@material-ui/icons/LocationOn";
@@ -132,6 +133,7 @@ class Profile extends Component {
                 @{handle}
               </MuiLink>
               <hr />
+              <Divider variant="middle" />
               {bio && <Typography variant="body2">{bio}</Typography>}
               <hr />
               {location && (
