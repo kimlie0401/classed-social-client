@@ -8,9 +8,6 @@ import Profile from "../components/Profile";
 
 import Grow from "@material-ui/core/Zoom";
 
-axios.defaults.baseURL =
-  "https://us-central1-social-573b5.cloudfunctions.net/api";
-
 class home extends Component {
   state = {
     screams: null

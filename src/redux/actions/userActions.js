@@ -9,9 +9,6 @@ import {
 import axios from "axios";
 import Cookies from "js-cookie";
 
-// axios.defaults.baseURL =
-//   "https://us-central1-social-573b5.cloudfunctions.net/api";
-
 export const loginUser = (userData, history) => dispatch => {
   dispatch({ type: LOADING_UI });
   axios
