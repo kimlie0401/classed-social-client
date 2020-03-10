@@ -69,7 +69,6 @@ class Scream extends Component {
         createdAt,
         userImage,
         userHandle,
-        screamId,
         likeCount,
         commentCount
       },

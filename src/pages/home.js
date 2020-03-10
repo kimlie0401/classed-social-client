@@ -9,7 +9,7 @@ import Profile from "../components/Profile";
 import { connect } from "react-redux";
 import { getScreams } from "../redux/actions/dataActions";
 
-import Grow from "@material-ui/core/Zoom";
+// import Grow from "@material-ui/core/Zoom";
 
 class home extends Component {
   componentDidMount = () => {
@@ -25,11 +25,11 @@ class home extends Component {
     );
     return (
       <Grid container spacing={3}>
-        <Grow in={!loading ? true : false}>
-          <Grid item sm={8} xs={12}>
-            {recentScreamMarkup}
-          </Grid>
-        </Grow>
+        {/* <Grow in={!loading ? true : false}> */}
+        <Grid item sm={8} xs={12}>
+          {recentScreamMarkup}
+        </Grid>
+        {/* </Grow> */}
         <Grid item sm={4} xs={12}>
           <Profile />
         </Grid>
