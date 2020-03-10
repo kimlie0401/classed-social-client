@@ -95,13 +95,14 @@ class EditDetails extends Component {
                 name="bio"
                 type="text"
                 label="Bio"
-                // multiline
-                // rows="3"
+                multiline
+                rows="3"
                 placeholder="A short bio about yourself"
                 className={classes.textField}
                 value={this.state.bio}
                 onChange={this.handleChange}
                 fullWidth
+                variant="outlined"
               />
               <TextField
                 name="website"
@@ -112,6 +113,7 @@ class EditDetails extends Component {
                 value={this.state.website}
                 onChange={this.handleChange}
                 fullWidth
+                variant="outlined"
               />
               <TextField
                 name="location"
@@ -122,6 +124,7 @@ class EditDetails extends Component {
                 value={this.state.location}
                 onChange={this.handleChange}
                 fullWidth
+                variant="outlined"
               />
             </form>
           </DialogContent>

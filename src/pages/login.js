@@ -118,7 +118,7 @@ class login extends Component {
               <small>
                 New to us?{" "}
                 <Link to="/signup">
-                  <Typography variant="body" color="primary">
+                  <Typography variant="inherit" color="primary">
                     Sign Up
                   </Typography>
                 </Link>

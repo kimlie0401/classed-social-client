@@ -146,7 +146,7 @@ class signup extends Component {
               <small>
                 Already have an account?{" "}
                 <Link to="/login">
-                  <Typography variant="body" color="primary">
+                  <Typography variant="inherit" color="primary">
                     Login
                   </Typography>
                 </Link>
