@@ -26,7 +26,8 @@ const Transition = React.forwardRef(function Transition(props, ref) {
 const styles = theme => ({
   ...theme.global,
   submitButton: {
-    position: "relative"
+    position: "relative",
+    marginBottom: 15
   },
   progressSpinner: {
     position: "absolute"
