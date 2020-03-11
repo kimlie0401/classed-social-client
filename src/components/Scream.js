@@ -6,10 +6,10 @@ import relativeTime from "dayjs/plugin/relativeTime";
 import PropTypes from "prop-types";
 import MyButton from "../util/MyButton";
 import DeleteScream from "./DeleteScream";
+import EditScream from "./EditScream";
 
 // M.ui stuff
 import Card from "@material-ui/core/Card";
-// import CardActionArea from "@material-ui/core/CardActionArea";
 import CardActions from "@material-ui/core/CardActions";
 import CardContent from "@material-ui/core/CardContent";
 import Typography from "@material-ui/core/Typography";
@@ -101,7 +101,12 @@ class Scream extends Component {
 
     const deleteButton =
       authenticated && userHandle === handle ? (
-        <DeleteScream screamId={screamId} className={classes.dButton} />
+        <DeleteScream screamId={screamId} />
+      ) : null;
+
+    const editButton =
+      authenticated && userHandle === handle ? (
+        <EditScream screamId={screamId} body={body} />
       ) : null;
 
     return (
@@ -133,6 +138,7 @@ class Scream extends Component {
             <ChatIcon color="primary" />
           </MyButton>
           <span>{commentCount} comments</span>
+          {editButton}
           {deleteButton}
         </CardActions>
       </Card>

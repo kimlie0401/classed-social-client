@@ -24,7 +24,7 @@ const Transition = React.forwardRef(function Transition(props, ref) {
 const styles = {
   deleteButton: {
     position: "absolute",
-    right: "3%",
+    right: "1%",
     color: "darkred"
   }
 };
