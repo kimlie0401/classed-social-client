@@ -122,7 +122,9 @@ class Scream extends Component {
         />
         <Divider variant="middle" />
         <CardContent className={classes.content}>
-          <Typography variant="body1">{body}</Typography>
+          <Typography variant="body1" style={{ whiteSpace: "pre" }}>
+            {body}
+          </Typography>
         </CardContent>
         <CardActions disableSpacing>
           {likeButton}
