@@ -9,6 +9,9 @@ import Dialog from "@material-ui/core/Dialog";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import DialogActions from "@material-ui/core/DialogActions";
 import DeleteOutline from "@material-ui/icons/DeleteOutline";
+import DialogContent from "@material-ui/core/DialogContent";
+import DialogContentText from "@material-ui/core/DialogContentText";
+import Typography from "@material-ui/core/Typography";
 
 import { connect } from "react-redux";
 import { deleteScream } from "../redux/actions/dataActions";
@@ -54,8 +57,15 @@ class DeleteScream extends Component {
           maxWidth="sm"
         >
           <DialogTitle>
-            Are you sure you want to delete this scream ?
+            <Typography variant="inherit" color="primary">
+              Delete Scream
+            </Typography>
           </DialogTitle>
+          <DialogContent>
+            <DialogContentText>
+              Are you sure you want to delete this scream?
+            </DialogContentText>
+          </DialogContent>
           <DialogActions>
             <Button onClick={this.handleClose} color="primary">
               Cancel

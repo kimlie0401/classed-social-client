@@ -16,6 +16,7 @@ import Tooltip from "@material-ui/core/Tooltip";
 import IconButton from "@material-ui/core/IconButton";
 import Slide from "@material-ui/core/Slide";
 import DialogContentText from "@material-ui/core/DialogContentText";
+import Typography from "@material-ui/core/Typography";
 
 // Icons
 import KeyboardReturn from "@material-ui/icons/KeyboardReturn";
@@ -58,7 +59,11 @@ class Logout extends Component {
           maxWidth="sm"
           TransitionComponent={Transition}
         >
-          <DialogTitle>{"Logout"}</DialogTitle>
+          <DialogTitle>
+            <Typography variant="inherit" color="primary">
+              Logout
+            </Typography>
+          </DialogTitle>
           <DialogContent>
             <DialogContentText>Are you sure to logout?</DialogContentText>
           </DialogContent>

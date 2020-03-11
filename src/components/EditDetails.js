@@ -15,6 +15,7 @@ import DialogActions from "@material-ui/core/DialogActions";
 import DialogContent from "@material-ui/core/DialogContent";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import Slide from "@material-ui/core/Slide";
+import Typography from "@material-ui/core/Typography";
 
 // Icons
 import EditIcon from "@material-ui/icons/Edit";
@@ -88,7 +89,11 @@ class EditDetails extends Component {
           maxWidth="sm"
           TransitionComponent={Transition}
         >
-          <DialogTitle>Edit your details</DialogTitle>
+          <DialogTitle>
+            <Typography variant="inherit" color="primary">
+              Edit your details
+            </Typography>
+          </DialogTitle>
           <DialogContent>
             <form>
               <TextField
@@ -103,6 +108,7 @@ class EditDetails extends Component {
                 onChange={this.handleChange}
                 fullWidth
                 variant="outlined"
+                autoFocus
               />
               <TextField
                 name="website"

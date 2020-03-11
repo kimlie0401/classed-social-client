@@ -2,6 +2,7 @@ import React, { Component, Fragment } from "react";
 import PropTypes from "prop-types";
 import withStyles from "@material-ui/core/styles/withStyles";
 import MyButton from "../util/MyButton";
+
 // MUI Stuff
 import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField";
@@ -11,9 +12,16 @@ import DialogTitle from "@material-ui/core/DialogTitle";
 import CircularProgress from "@material-ui/core/CircularProgress";
 import AddIcon from "@material-ui/icons/Add";
 import CloseIcon from "@material-ui/icons/Close";
+import Slide from "@material-ui/core/Slide";
+import Typography from "@material-ui/core/Typography";
+
 // Redux stuff
 import { connect } from "react-redux";
 import { postScream } from "../redux/actions/dataActions";
+
+const Transition = React.forwardRef(function Transition(props, ref) {
+  return <Slide direction="up" ref={ref} {...props} />;
+});
 
 const styles = theme => ({
   ...theme.global,
@@ -25,8 +33,8 @@ const styles = theme => ({
   },
   closeButton: {
     position: "absolute",
-    left: "90%",
-    top: "10%"
+    right: "2%",
+    top: "3%"
   }
 });
 
@@ -76,6 +84,7 @@ class PostScream extends Component {
           onClose={this.handleClose}
           fullWidth
           maxWidth="sm"
+          TransitionComponent={Transition}
         >
           <MyButton
             tip="Close"
@@ -84,7 +93,11 @@ class PostScream extends Component {
           >
             <CloseIcon />
           </MyButton>
-          <DialogTitle>Post a new scream</DialogTitle>
+          <DialogTitle>
+            <Typography variant="inherit" color="primary">
+              Post a new scream
+            </Typography>
+          </DialogTitle>
           <DialogContent>
             <form onSubmit={this.handleSubmit}>
               <TextField
@@ -100,6 +113,7 @@ class PostScream extends Component {
                 onChange={this.handleChange}
                 fullWidth
                 variant="outlined"
+                autoFocus
               />
               <Button
                 type="submit"
