@@ -12,9 +12,14 @@ import DeleteOutline from "@material-ui/icons/DeleteOutline";
 import DialogContent from "@material-ui/core/DialogContent";
 import DialogContentText from "@material-ui/core/DialogContentText";
 import Typography from "@material-ui/core/Typography";
+import Slide from "@material-ui/core/Slide";
 
 import { connect } from "react-redux";
 import { deleteScream } from "../redux/actions/dataActions";
+
+const Transition = React.forwardRef(function Transition(props, ref) {
+  return <Slide direction="up" ref={ref} {...props} />;
+});
 
 const styles = {
   deleteButton: {
@@ -55,6 +60,7 @@ class DeleteScream extends Component {
           onClose={this.handleClose}
           fullWidth
           maxWidth="sm"
+          TransitionComponent={Transition}
         >
           <DialogTitle>
             <Typography variant="inherit" color="primary">
