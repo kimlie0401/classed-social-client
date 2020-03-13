@@ -103,3 +103,7 @@ export const editScream = (screamData, screamId) => dispatch => {
       });
     });
 };
+
+export const clearErrors = () => dispatch => {
+  dispatch({ type: CLEAR_ERRORS });
+};

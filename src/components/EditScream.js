@@ -5,7 +5,7 @@ import MyButton from "../util/MyButton";
 
 // Redux stuff
 import { connect } from "react-redux";
-import { editScream } from "../redux/actions/dataActions";
+import { editScream, clearErrors } from "../redux/actions/dataActions";
 
 // MUI Stuff
 import Button from "@material-ui/core/Button";
@@ -59,8 +59,7 @@ class EditScream extends Component {
       });
     }
     if (!nextProps.UI.errors && !nextProps.UI.loading) {
-      this.setState({ body: "" });
-      this.handleClose();
+      this.setState({ body: "", open: false, errors: {} });
     }
   }
   handleOpen = () => {
@@ -68,6 +67,7 @@ class EditScream extends Component {
   };
 
   handleClose = () => {
+    this.props.clearErrors();
     this.setState({ open: false, errors: {} });
   };
 
@@ -160,6 +160,7 @@ class EditScream extends Component {
 
 EditScream.propTypes = {
   editScream: PropTypes.func.isRequired,
+  clearErrors: PropTypes.func.isRequired,
   classes: PropTypes.object.isRequired
 };
 
@@ -167,6 +168,6 @@ const mapStateToProps = state => ({
   UI: state.UI
 });
 
-export default connect(mapStateToProps, { editScream })(
+export default connect(mapStateToProps, { editScream, clearErrors })(
   withStyles(styles)(EditScream)
 );
