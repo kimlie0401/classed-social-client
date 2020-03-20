@@ -129,7 +129,8 @@ class Scream extends Component {
         <Divider variant="middle" />
         <CardContent className={classes.content}>
           <Typography variant="body1" style={{ whiteSpace: "pre" }}>
-            {body}
+            {body.length > 100 ? `${body.substring(0, 100)}........` : body}
+            {/* {body} */}
           </Typography>
         </CardContent>
         <CardActions disableSpacing>
