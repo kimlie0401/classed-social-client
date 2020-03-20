@@ -7,6 +7,7 @@ import PropTypes from "prop-types";
 import MyButton from "../util/MyButton";
 import DeleteScream from "./DeleteScream";
 import EditScream from "./EditScream";
+import ScreamDialog from "./ScreamDialog";
 
 // M.ui stuff
 import Card from "@material-ui/core/Card";
@@ -138,6 +139,7 @@ class Scream extends Component {
             <ChatIcon color="primary" />
           </MyButton>
           <span>{commentCount} comments</span>
+          <ScreamDialog screamId={screamId} userHandle={userHandle} />
           {editButton}
           {deleteButton}
         </CardActions>
