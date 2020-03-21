@@ -10,7 +10,7 @@ import Dialog from "@material-ui/core/Dialog";
 import DialogContent from "@material-ui/core/DialogContent";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import DialogActions from "@material-ui/core/DialogActions";
-import CircularProgress from "@material-ui/core/CircularProgress";
+import LinearProgress from "@material-ui/core/LinearProgress";
 import Typography from "@material-ui/core/Typography";
 import Slide from "@material-ui/core/Slide";
 import Avatar from "@material-ui/core/Avatar";
@@ -94,7 +94,7 @@ class ScreamDialog extends Component {
         >
           <DialogTitle>
             {loading ? (
-              <CircularProgress />
+              <LinearProgress />
             ) : (
               <div className={classes.header}>
                 <Avatar
@@ -127,7 +127,7 @@ class ScreamDialog extends Component {
           </DialogTitle>
           <DialogContent dividers className={classes.dialogContent}>
             {loading ? (
-              <CircularProgress />
+              <LinearProgress />
             ) : (
               <Typography variant="body1" style={{ whiteSpace: "pre" }}>
                 {body}
