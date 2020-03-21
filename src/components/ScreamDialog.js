@@ -45,7 +45,7 @@ const styles = theme => ({
   large: {
     width: 60,
     height: 60,
-    marginRight: 30
+    marginRight: 20
   }
 });
 
