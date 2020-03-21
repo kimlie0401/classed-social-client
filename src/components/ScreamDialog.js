@@ -9,12 +9,11 @@ import { Link } from "react-router-dom";
 import Dialog from "@material-ui/core/Dialog";
 import DialogContent from "@material-ui/core/DialogContent";
 import DialogTitle from "@material-ui/core/DialogTitle";
+import DialogActions from "@material-ui/core/DialogActions";
 import CircularProgress from "@material-ui/core/CircularProgress";
-import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
 import Slide from "@material-ui/core/Slide";
 import Avatar from "@material-ui/core/Avatar";
-import Divider from "@material-ui/core/Divider";
 
 // Icons
 import CloseIcon from "@material-ui/icons/Close";
@@ -30,10 +29,6 @@ const Transition = React.forwardRef(function Transition(props, ref) {
 
 const styles = theme => ({
   ...theme.global,
-  invisibleSeparator: {
-    border: "none",
-    margin: 4
-  },
   dialogContent: {
     padding: 20
   },
@@ -81,38 +76,6 @@ class ScreamDialog extends Component {
       UI: { loading }
     } = this.props;
 
-    const dialogMarkup = loading ? (
-      <CircularProgress size={150} />
-    ) : (
-      <Grid container spacing={1}>
-        <Grid item sm={12} className={classes.header}>
-          <Avatar alt="Profile" src={userImage} className={classes.large} />
-          <div>
-            <Typography
-              component={Link}
-              color="primary"
-              variant="h5"
-              to={`/users/${userHandle}`}
-            >
-              @{userHandle}
-            </Typography>
-            <Typography variant="body2" color="textSecondary">
-              {dayjs(createdAt).format("h:mm a, MMMM DD YYYY")}
-            </Typography>
-          </div>
-        </Grid>
-        <Grid item sm={12}>
-          <hr className={classes.invisibleSeparator} />
-          <Divider variant="fullWidth" />
-          <hr className={classes.invisibleSeparator} />
-          <hr className={classes.invisibleSeparator} />
-          <hr className={classes.invisibleSeparator} />
-          <Typography variant="body1" style={{ whiteSpace: "pre" }}>
-            {body}
-          </Typography>
-        </Grid>
-      </Grid>
-    );
     return (
       <Fragment>
         <MyButton
@@ -129,16 +92,49 @@ class ScreamDialog extends Component {
           maxWidth="sm"
           TransitionComponent={Transition}
         >
-          <MyButton
-            tip="Close"
-            onClick={this.handleClose}
-            tipClassName={classes.closeButton}
-          >
-            <CloseIcon />
-          </MyButton>
-          <DialogContent className={classes.dialogContent}>
-            {dialogMarkup}
+          <DialogTitle>
+            {loading ? (
+              <CircularProgress />
+            ) : (
+              <div className={classes.header}>
+                <Avatar
+                  alt="Profile"
+                  src={userImage}
+                  className={classes.large}
+                />
+                <div>
+                  <Typography
+                    component={Link}
+                    color="primary"
+                    variant="h5"
+                    to={`/users/${userHandle}`}
+                  >
+                    @{userHandle}
+                  </Typography>
+                  <Typography variant="body2" color="textSecondary">
+                    {dayjs(createdAt).format("h:mm a, MMMM DD YYYY")}
+                  </Typography>
+                </div>
+                <MyButton
+                  tip="Close"
+                  onClick={this.handleClose}
+                  tipClassName={classes.closeButton}
+                >
+                  <CloseIcon />
+                </MyButton>
+              </div>
+            )}
+          </DialogTitle>
+          <DialogContent dividers className={classes.dialogContent}>
+            {loading ? (
+              <CircularProgress />
+            ) : (
+              <Typography variant="body1" style={{ whiteSpace: "pre" }}>
+                {body}
+              </Typography>
+            )}
           </DialogContent>
+          <DialogActions></DialogActions>
         </Dialog>
       </Fragment>
     );
