@@ -10,6 +10,7 @@ import Dialog from "@material-ui/core/Dialog";
 import DialogContent from "@material-ui/core/DialogContent";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import DialogActions from "@material-ui/core/DialogActions";
+import CircularProgress from "@material-ui/core/CircularProgress";
 import LinearProgress from "@material-ui/core/LinearProgress";
 import Typography from "@material-ui/core/Typography";
 import Slide from "@material-ui/core/Slide";
@@ -46,6 +47,11 @@ const styles = theme => ({
     width: 60,
     height: 60,
     marginRight: 20
+  },
+  spinnerDiv: {
+    textAlign: "center",
+    maringTop: 50,
+    margingBottom: 50
   }
 });
 
@@ -127,7 +133,9 @@ class ScreamDialog extends Component {
           </DialogTitle>
           <DialogContent dividers className={classes.dialogContent}>
             {loading ? (
-              <LinearProgress />
+              <div className={classes.spinnerDiv}>
+                <CircularProgress size={150} thickness={2} />
+              </div>
             ) : (
               <Typography variant="body1" style={{ whiteSpace: "pre" }}>
                 {body}
