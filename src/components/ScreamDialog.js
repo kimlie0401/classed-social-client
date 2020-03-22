@@ -4,6 +4,7 @@ import withStyles from "@material-ui/core/styles/withStyles";
 import MyButton from "../util/MyButton";
 import dayjs from "dayjs";
 import { Link } from "react-router-dom";
+import LikeButton from "./LikeButton";
 
 // MUI Stuff
 import Dialog from "@material-ui/core/Dialog";
@@ -19,6 +20,7 @@ import Avatar from "@material-ui/core/Avatar";
 // Icons
 import CloseIcon from "@material-ui/icons/Close";
 import UnfoldMore from "@material-ui/icons/UnfoldMore";
+import ChatIcon from "@material-ui/icons/Chat";
 
 // Redux stuff
 import { connect } from "react-redux";
@@ -52,6 +54,9 @@ const styles = theme => ({
     textAlign: "center",
     maringTop: 50,
     margingBottom: 50
+  },
+  buttons: {
+    marginTop: 20
   }
 });
 
@@ -137,9 +142,19 @@ class ScreamDialog extends Component {
                 <CircularProgress size={150} thickness={2} />
               </div>
             ) : (
-              <Typography variant="body1" style={{ whiteSpace: "pre" }}>
-                {body}
-              </Typography>
+              <Fragment>
+                <Typography variant="body1" style={{ whiteSpace: "pre" }}>
+                  {body}
+                </Typography>
+                <div className={classes.buttons}>
+                  <LikeButton screamId={screamId} />
+                  <span>{likeCount} Likes</span>
+                  <MyButton tip="comments">
+                    <ChatIcon color="primary" />
+                  </MyButton>
+                  <span>{commentCount} comments</span>
+                </div>
+              </Fragment>
             )}
           </DialogContent>
           <DialogActions></DialogActions>
