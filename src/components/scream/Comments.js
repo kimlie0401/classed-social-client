@@ -29,8 +29,7 @@ const styles = theme => ({
     margin: 20
   },
   divider: {
-    marginBottom: 20,
-    width: "100%"
+    marginBottom: 20
   }
 });
 
@@ -45,32 +44,34 @@ class Comments extends Component {
             <Fragment key={createdAt}>
               <Grid item sm={12}>
                 <Grid container>
-                  <Grid item sm={2}>
-                    <Avatar
-                      alt="Profile"
-                      src={userImage}
-                      className={classes.large}
-                    />
+                  <Grid container>
+                    <Grid item sm={2}>
+                      <Avatar
+                        alt="Profile"
+                        src={userImage}
+                        className={classes.large}
+                      />
+                    </Grid>
+                    <Grid item sm={10}>
+                      <div className={classes.commentData}>
+                        <Typography
+                          variant="h5"
+                          component={Link}
+                          to={`/users/${userHandle}`}
+                          color="primary"
+                        >
+                          {userHandle}
+                        </Typography>
+                        <Typography variant="body2" color="textSecondary">
+                          {dayjs(createdAt).format("h:mm a, MMMM DD YYYY")}
+                        </Typography>
+                        {/* <hr className={classes.invisibleSeparator} /> */}
+                      </div>
+                    </Grid>
                   </Grid>
-                  <Grid item sm={10}>
-                    <div className={classes.commentData}>
-                      <Typography
-                        variant="h5"
-                        component={Link}
-                        to={`/users/${userHandle}`}
-                        color="primary"
-                      >
-                        {userHandle}
-                      </Typography>
-                      <Typography variant="body2" color="textSecondary">
-                        {dayjs(createdAt).format("h:mm a, MMMM DD YYYY")}
-                      </Typography>
-                      {/* <hr className={classes.invisibleSeparator} /> */}
-                    </div>
+                  <Grid item sm={12} className={classes.body}>
+                    <Typography variabnt="body1">{body}</Typography>
                   </Grid>
-                </Grid>
-                <Grid item sm={12} className={classes.body}>
-                  <Typography variabnt="body1">{body}</Typography>
                 </Grid>
                 {index !== comments.length - 1 && (
                   <Divider variant="middle" className={classes.divider} />
