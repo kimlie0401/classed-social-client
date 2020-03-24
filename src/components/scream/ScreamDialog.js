@@ -34,7 +34,8 @@ const Transition = React.forwardRef(function Transition(props, ref) {
 const styles = theme => ({
   ...theme.global,
   dialogContent: {
-    padding: 20
+    padding: 20,
+    minHeight: 100
   },
   closeButton: {
     position: "absolute",
