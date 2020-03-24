@@ -29,7 +29,8 @@ const styles = theme => ({
     margin: 20
   },
   divider: {
-    marginBottom: 20
+    marginBottom: 20,
+    width: "100%"
   }
 });
 
@@ -51,7 +52,7 @@ class Comments extends Component {
                       className={classes.large}
                     />
                   </Grid>
-                  <Grid item sm={9}>
+                  <Grid item sm={10}>
                     <div className={classes.commentData}>
                       <Typography
                         variant="h5"
@@ -67,9 +68,9 @@ class Comments extends Component {
                       {/* <hr className={classes.invisibleSeparator} /> */}
                     </div>
                   </Grid>
-                  <Grid item sm={12} className={classes.body}>
-                    <Typography variabnt="body1">{body}</Typography>
-                  </Grid>
+                </Grid>
+                <Grid item sm={12} className={classes.body}>
+                  <Typography variabnt="body1">{body}</Typography>
                 </Grid>
                 {index !== comments.length - 1 && (
                   <Divider variant="middle" className={classes.divider} />
