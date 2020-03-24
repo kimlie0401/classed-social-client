@@ -1,35 +1,35 @@
 import React, { Component, Fragment } from "react";
-import withStyles from "@material-ui/core/styles/withStyles";
 import PropTypes from "prop-types";
-import MyButton from "../util/MyButton";
+import withStyles from "@material-ui/core/styles/withStyles";
+
+// Redux stuff
+import { connect } from "react-redux";
+import { logoutUser } from "../../redux/actions/userActions";
 
 // MUI Stuff
 import Button from "@material-ui/core/Button";
 import Dialog from "@material-ui/core/Dialog";
-import DialogTitle from "@material-ui/core/DialogTitle";
 import DialogActions from "@material-ui/core/DialogActions";
-import DeleteOutline from "@material-ui/icons/DeleteOutline";
 import DialogContent from "@material-ui/core/DialogContent";
+import DialogTitle from "@material-ui/core/DialogTitle";
+import Tooltip from "@material-ui/core/Tooltip";
+import IconButton from "@material-ui/core/IconButton";
+import Slide from "@material-ui/core/Slide";
 import DialogContentText from "@material-ui/core/DialogContentText";
 import Typography from "@material-ui/core/Typography";
-import Slide from "@material-ui/core/Slide";
 
-import { connect } from "react-redux";
-import { deleteScream } from "../redux/actions/dataActions";
+// Icons
+import KeyboardReturn from "@material-ui/icons/KeyboardReturn";
 
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
 });
 
-const styles = {
-  deleteButton: {
-    position: "absolute",
-    right: "1%",
-    color: "darkred"
-  }
-};
+const styles = theme => ({
+  ...theme.global
+});
 
-class DeleteScream extends Component {
+class Logout extends Component {
   state = {
     open: false
   };
@@ -39,45 +39,40 @@ class DeleteScream extends Component {
   handleClose = () => {
     this.setState({ open: false });
   };
-  deleteScream = () => {
-    this.props.deleteScream(this.props.screamId);
-    this.setState({ open: false });
+  handleLogout = () => {
+    this.props.logoutUser();
+    this.handleClose();
   };
-  render() {
-    const { classes } = this.props;
 
+  render() {
     return (
       <Fragment>
-        <MyButton
-          tip="Delete Scream"
-          onClick={this.handleOpen}
-          btnClassName={classes.deleteButton}
-        >
-          <DeleteOutline />
-        </MyButton>
+        <Tooltip title="Logout" placement="top">
+          <IconButton onClick={this.handleOpen}>
+            <KeyboardReturn color="primary" />
+          </IconButton>
+        </Tooltip>
         <Dialog
           open={this.state.open}
           onClose={this.handleClose}
-          fullWidth
+          fullWidth={true}
           maxWidth="sm"
           TransitionComponent={Transition}
         >
           <DialogTitle>
             <Typography variant="inherit" color="primary">
-              Delete Scream
+              Logout
             </Typography>
           </DialogTitle>
           <DialogContent>
-            <DialogContentText>
-              Are you sure you want to delete this scream?
-            </DialogContentText>
+            <DialogContentText>Are you sure to logout?</DialogContentText>
           </DialogContent>
           <DialogActions>
             <Button onClick={this.handleClose} color="primary">
               Cancel
             </Button>
-            <Button onClick={this.deleteScream} color="primary">
-              Delete
+            <Button onClick={this.handleLogout} color="primary" autoFocus>
+              OK
             </Button>
           </DialogActions>
         </Dialog>
@@ -86,12 +81,8 @@ class DeleteScream extends Component {
   }
 }
 
-DeleteScream.propTypes = {
-  deleteScream: PropTypes.func.isRequired,
-  classes: PropTypes.object.isRequired,
-  screamId: PropTypes.string.isRequired
+Logout.propTypes = {
+  logoutUser: PropTypes.func.isRequired
 };
 
-export default connect(null, { deleteScream })(
-  withStyles(styles)(DeleteScream)
-);
+export default connect(null, { logoutUser })(withStyles(styles)(Logout));

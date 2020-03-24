@@ -1,7 +1,11 @@
 import React, { Component, Fragment } from "react";
 import PropTypes from "prop-types";
 import withStyles from "@material-ui/core/styles/withStyles";
-import MyButton from "../util/MyButton";
+import MyButton from "../../util/MyButton";
+
+// Redux stuff
+import { connect } from "react-redux";
+import { editScream, clearErrors } from "../../redux/actions/dataActions";
 
 // MUI Stuff
 import Button from "@material-ui/core/Button";
@@ -9,15 +13,13 @@ import TextField from "@material-ui/core/TextField";
 import Dialog from "@material-ui/core/Dialog";
 import DialogContent from "@material-ui/core/DialogContent";
 import DialogTitle from "@material-ui/core/DialogTitle";
-import CircularProgress from "@material-ui/core/CircularProgress";
-import AddIcon from "@material-ui/icons/Add";
-import CloseIcon from "@material-ui/icons/Close";
 import Slide from "@material-ui/core/Slide";
 import Typography from "@material-ui/core/Typography";
+import CircularProgress from "@material-ui/core/CircularProgress";
 
-// Redux stuff
-import { connect } from "react-redux";
-import { postScream, clearErrors } from "../redux/actions/dataActions";
+// Icons
+import EditIcon from "@material-ui/icons/Edit";
+import CloseIcon from "@material-ui/icons/Close";
 
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
@@ -27,9 +29,7 @@ const styles = theme => ({
   ...theme.global,
   submitButton: {
     position: "relative",
-    marginBottom: 15,
-    marginTop: 10,
-    float: "right"
+    marginBottom: 15
   },
   progressSpinner: {
     position: "absolute"
@@ -38,15 +38,20 @@ const styles = theme => ({
     position: "absolute",
     right: "2%",
     top: "3%"
+  },
+  button: {
+    position: "absolute",
+    right: "9%"
   }
 });
 
-class PostScream extends Component {
+class EditScream extends Component {
   state = {
-    open: false,
     body: "",
+    open: false,
     errors: {}
   };
+
   UNSAFE_componentWillReceiveProps(nextProps) {
     if (nextProps.UI.errors) {
       this.setState({
@@ -58,18 +63,25 @@ class PostScream extends Component {
     }
   }
   handleOpen = () => {
-    this.setState({ open: true });
+    this.setState({ open: true, body: this.props.body });
   };
+
   handleClose = () => {
     this.props.clearErrors();
     this.setState({ open: false, errors: {} });
   };
+
   handleChange = event => {
-    this.setState({ [event.target.name]: event.target.value });
+    this.setState({
+      [event.target.name]: event.target.value
+    });
   };
   handleSubmit = event => {
     event.preventDefault();
-    this.props.postScream({ body: this.state.body });
+    const editedScream = {
+      body: this.state.body
+    };
+    this.props.editScream(editedScream, this.props.screamId);
   };
   render() {
     const { errors } = this.state;
@@ -79,8 +91,12 @@ class PostScream extends Component {
     } = this.props;
     return (
       <Fragment>
-        <MyButton onClick={this.handleOpen} tip="Post a Scream!">
-          <AddIcon />
+        <MyButton
+          tip="Edit Scream"
+          onClick={this.handleOpen}
+          btnClassName={classes.button}
+        >
+          <EditIcon color="primary" />
         </MyButton>
         <Dialog
           open={this.state.open}
@@ -98,7 +114,7 @@ class PostScream extends Component {
           </MyButton>
           <DialogTitle>
             <Typography variant="inherit" color="primary">
-              Post a new scream
+              Edit your scream
             </Typography>
           </DialogTitle>
           <DialogContent>
@@ -109,7 +125,7 @@ class PostScream extends Component {
                 label="SCREAM!!"
                 multiline
                 rows="3"
-                placeholder="Scream at your fellow apes"
+                // placeholder="Scream at your fellow apes"
                 error={errors.body ? true : false}
                 helperText={errors.body}
                 className={classes.textField}
@@ -117,6 +133,7 @@ class PostScream extends Component {
                 fullWidth
                 variant="outlined"
                 autoFocus
+                value={this.state.body}
               />
               <Button
                 type="submit"
@@ -141,16 +158,16 @@ class PostScream extends Component {
   }
 }
 
-PostScream.propTypes = {
-  postScream: PropTypes.func.isRequired,
+EditScream.propTypes = {
+  editScream: PropTypes.func.isRequired,
   clearErrors: PropTypes.func.isRequired,
-  UI: PropTypes.object.isRequired
+  classes: PropTypes.object.isRequired
 };
 
 const mapStateToProps = state => ({
   UI: state.UI
 });
 
-export default connect(mapStateToProps, { postScream, clearErrors })(
-  withStyles(styles)(PostScream)
+export default connect(mapStateToProps, { editScream, clearErrors })(
+  withStyles(styles)(EditScream)
 );

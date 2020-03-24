@@ -1,7 +1,8 @@
 import React, { Component, Fragment } from "react";
 import PropTypes from "prop-types";
 import withStyles from "@material-ui/core/styles/withStyles";
-import MyButton from "../util/MyButton";
+import MyButton from "../../util/MyButton";
+import Comments from "./Comments";
 import dayjs from "dayjs";
 import { Link } from "react-router-dom";
 import LikeButton from "./LikeButton";
@@ -24,7 +25,7 @@ import ChatIcon from "@material-ui/icons/Chat";
 
 // Redux stuff
 import { connect } from "react-redux";
-import { getScream } from "../redux/actions/dataActions";
+import { getScream } from "../../redux/actions/dataActions";
 
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
@@ -57,6 +58,9 @@ const styles = theme => ({
   },
   buttons: {
     marginTop: 20
+  },
+  action: {
+    marginTop: 15
   }
 });
 
@@ -82,7 +86,8 @@ class ScreamDialog extends Component {
         likeCount,
         commentCount,
         userImage,
-        userHandle
+        userHandle,
+        comments
       },
       UI: { loading }
     } = this.props;
@@ -157,7 +162,9 @@ class ScreamDialog extends Component {
               </Fragment>
             )}
           </DialogContent>
-          <DialogActions></DialogActions>
+          <DialogActions className={classes.action}>
+            {loading ? <LinearProgress /> : <Comments comments={comments} />}
+          </DialogActions>
         </Dialog>
       </Fragment>
     );
