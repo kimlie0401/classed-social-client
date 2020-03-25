@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import withStyles from "@material-ui/core/styles/withStyles";
 import MyButton from "../../util/MyButton";
 import Comments from "./Comments";
+import CommentForm from "./CommentForm";
 import dayjs from "dayjs";
 import { Link } from "react-router-dom";
 import LikeButton from "./LikeButton";
@@ -17,6 +18,7 @@ import LinearProgress from "@material-ui/core/LinearProgress";
 import Typography from "@material-ui/core/Typography";
 import Slide from "@material-ui/core/Slide";
 import Avatar from "@material-ui/core/Avatar";
+import Grid from "@material-ui/core/Grid";
 
 // Icons
 import CloseIcon from "@material-ui/icons/Close";
@@ -35,7 +37,7 @@ const styles = theme => ({
   ...theme.global,
   dialogContent: {
     padding: 20,
-    minHeight: 100
+    minHeight: 150
   },
   closeButton: {
     position: "absolute",
@@ -58,7 +60,9 @@ const styles = theme => ({
     margingBottom: 50
   },
   buttons: {
-    marginTop: 20
+    display: "flex",
+    justifyContent: "center",
+    alignItem: "center"
   },
   action: {
     marginTop: 15
@@ -152,19 +156,49 @@ class ScreamDialog extends Component {
                 <Typography variant="body1" style={{ whiteSpace: "pre" }}>
                   {body}
                 </Typography>
-                <div className={classes.buttons}>
-                  <LikeButton screamId={screamId} />
-                  <span>{likeCount} Likes</span>
-                  <MyButton tip="comments">
-                    <ChatIcon color="primary" />
-                  </MyButton>
-                  <span>{commentCount} comments</span>
-                </div>
               </Fragment>
             )}
           </DialogContent>
           <DialogActions className={classes.action}>
-            {loading ? <LinearProgress /> : <Comments comments={comments} />}
+            {loading ? (
+              <LinearProgress />
+            ) : (
+              <Fragment>
+                <Grid
+                  container
+                  alignContent="center"
+                  alignItems="center"
+                  justify="center"
+                >
+                  <Grid item sm={12} style={{ textAlign: "center" }}>
+                    <LikeButton screamId={screamId} />
+                    <span>{likeCount} Likes</span>
+                    <MyButton tip="comments">
+                      <ChatIcon color="primary" />
+                    </MyButton>
+                    <span>{commentCount} comments</span>
+                  </Grid>
+                </Grid>
+              </Fragment>
+            )}
+          </DialogActions>
+          <DialogActions>
+            {loading ? (
+              <LinearProgress />
+            ) : (
+              <Fragment>
+                <CommentForm screamId={screamId} />
+              </Fragment>
+            )}
+          </DialogActions>
+          <DialogActions className={classes.action}>
+            {loading ? (
+              <LinearProgress />
+            ) : (
+              <Fragment>
+                <Comments comments={comments} />
+              </Fragment>
+            )}
           </DialogActions>
         </Dialog>
       </Fragment>
