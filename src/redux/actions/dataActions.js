@@ -58,7 +58,7 @@ export const postScream = newScream => dispatch => {
         type: POST_SCREAM,
         payload: res.data
       });
-      dispatch({ type: CLEAR_ERRORS });
+      dispatch(clearErrors());
     })
     .catch(err => {
       dispatch({
@@ -121,6 +121,24 @@ export const deleteScream = screamId => dispatch => {
     .catch(err => console.log(err));
 };
 
+export const getUserData = userHandle => dispatch => {
+  dispatch({ type: LOADING_DATA });
+  axios
+    .get(`/user/${userHandle}`)
+    .then(res => {
+      dispatch({
+        type: SET_SCREAMS,
+        payload: res.data.screams
+      });
+    })
+    .catch(() => {
+      dispatch({
+        type: SET_SCREAMS,
+        payload: null
+      });
+    });
+};
+
 export const editScream = (screamData, screamId) => dispatch => {
   dispatch({ type: LOADING_UI });
   axios
@@ -130,7 +148,7 @@ export const editScream = (screamData, screamId) => dispatch => {
         type: EDIT_SCREAM,
         payload: res.data
       });
-      dispatch({ type: CLEAR_ERRORS });
+      dispatch(clearErrors());
     })
     .catch(err => {
       dispatch({
