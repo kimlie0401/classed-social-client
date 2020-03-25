@@ -11,12 +11,6 @@ import Divider from "@material-ui/core/Divider";
 
 const styles = theme => ({
   ...theme.global,
-  commentImage: {
-    maxWidth: "100%",
-    height: 100,
-    objectFit: "cover",
-    borderRadius: "50%"
-  },
   commentData: {
     marginLeft: 5
   },

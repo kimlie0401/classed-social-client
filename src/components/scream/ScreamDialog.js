@@ -37,7 +37,7 @@ const styles = theme => ({
   ...theme.global,
   dialogContent: {
     padding: 20,
-    minHeight: 150
+    minHeight: 120
   },
   closeButton: {
     position: "absolute",
@@ -58,14 +58,6 @@ const styles = theme => ({
     textAlign: "center",
     maringTop: 50,
     margingBottom: 50
-  },
-  buttons: {
-    display: "flex",
-    justifyContent: "center",
-    alignItem: "center"
-  },
-  action: {
-    marginTop: 15
   }
 });
 
@@ -191,7 +183,7 @@ class ScreamDialog extends Component {
               </Fragment>
             )}
           </DialogActions>
-          <DialogActions className={classes.action}>
+          <DialogActions>
             {loading ? (
               <LinearProgress />
             ) : (
