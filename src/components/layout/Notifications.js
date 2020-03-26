@@ -75,7 +75,7 @@ class Notifications extends Component {
               {icon}
               <Typography
                 component={Link}
-                variant="body2"
+                variant="caption"
                 color="primary"
                 to={`/users/${not.recipient}/scream/${not.screamId}`}
               >
