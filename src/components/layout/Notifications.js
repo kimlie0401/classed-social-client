@@ -57,6 +57,7 @@ class Notifications extends Component {
     } else {
       notificationsIcon = <NotificationsIcon />;
     }
+
     let notificationsMarkup =
       notifications && notifications.length > 0 ? (
         notifications.map(not => {
